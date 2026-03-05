@@ -1,5 +1,5 @@
 DOCKER ?= podman
-TAG ?= v0.10.0
+TAG ?= main
 PUSH ?= true
 IMAGE_REGISTRY = 192.168.21.17:30003/dci-community-general/streamsorter:${TAG}
 DOCKER_FILE_PATH = examples/accumulator/streamsorter/Dockerfile
