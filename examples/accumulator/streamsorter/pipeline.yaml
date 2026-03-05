@@ -6,22 +6,28 @@ spec:
   limits:
     readBatchSize: 1
   vertices:
-    - name: http-one
+    - name: input-one
       scale:
         min: 1
         max: 1
       source:
-        http: {}
-    - name: http-two
+        generator:
+          rpu: 10
+          keyCount: 10
+          duration: 20s
+    - name: input-two
       scale:
         min: 1
         max: 1
       source:
-        http: {}
+        generator:
+          rpu: 10
+          keyCount: 10
+          duration: 20s
     - name: py-accum
       udf:
         container:
-          image: quay.io/numaio/numaflow-python/streamsorter:stable
+          image: 192.168.21.17:30003/dci-community-general/streamsorter:v0.10.0
           imagePullPolicy: Always
           env:
             - name: PYTHONDEBUG
@@ -34,6 +40,7 @@ spec:
           storage:
             persistentVolumeClaim:
               volumeSize: 1Gi
+#             storageClassName: local-storage
     - name: py-sink
       scale:
         min: 1
@@ -41,9 +48,9 @@ spec:
       sink:
         log: {}
   edges:
-    - from: http-one
+    - from: input-one
       to: py-accum
-    - from: http-two
+    - from: input-two
       to: py-accum
     - from: py-accum
       to: py-sink
