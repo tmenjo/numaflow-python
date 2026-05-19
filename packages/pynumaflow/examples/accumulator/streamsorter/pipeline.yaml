@@ -32,7 +32,7 @@ spec:
     - name: py-accum
       udf:
         container:
-          image: 192.168.21.17:30003/dci-community-general/streamsorter:v0.13.0
+          image: 192.168.21.17:30003/dci-community-general/streamsorter-blackhole:v0.13.0
           imagePullPolicy: Always
           env:
             - name: PYTHONDEBUG

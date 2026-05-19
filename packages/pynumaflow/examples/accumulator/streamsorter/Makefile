@@ -1,7 +1,7 @@
 DOCKER = podman
 TAG ?= v0.13.0
 PUSH ?= false
-IMAGE_REGISTRY = 192.168.21.17:30003/dci-community-general/streamsorter:${TAG}
+IMAGE_REGISTRY = 192.168.21.17:30003/dci-community-general/streamsorter-blackhole:${TAG}
 DOCKER_FILE_PATH = examples/accumulator/streamsorter/Dockerfile
 
 .PHONY: update
